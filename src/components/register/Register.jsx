@@ -11,7 +11,8 @@ const Register = () => {
             email
             <input type="text" onChange={(e) => {setUser(oldUser=>({...oldUser,email:e.target.value}))}}/>
             <button onClick={()=>{
-                if(!user.usename && !user.password && user.email){
+                if(user.username && user.password && user.email){
+                    console.log('hello')
                     Auth.signUp({username:user.username, password:user.password,autoSignIn:true, attributes:{email:user.email}}).then(user=>{
                         console.log(user);
                     })
