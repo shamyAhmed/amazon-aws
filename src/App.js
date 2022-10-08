@@ -1,24 +1,19 @@
 import React from "react";
 import Register from "./components/register/Register";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import awsconfig from './aws-exports';
 import {Amplify} from 'aws-amplify';
-import LOGIN from './components/login/login';
-import Confirm from './components/confirm/confirm';
+import AuthPage from './pages/auth';
+import HomePage from './pages/home';
 Amplify.configure(awsconfig);
 function App() {
   return (
-    <div className="App">
-      Rister : 
-      <Register />
-
-      Login : 
-      <br />
-
-      <LOGIN />
-
-      Confirm :
-      <Confirm />
-    </div>
+    <Router>
+      <Routes>
+          <Route path="/auth" element={<AuthPage />}/>
+          <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 }
 
