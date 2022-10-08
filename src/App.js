@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Register from "./components/register/Register";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import awsconfig from './aws-exports';
-import {Amplify} from 'aws-amplify';
+import {Amplify, Auth} from 'aws-amplify';
 import AuthPage from './pages/auth';
 import HomePage from './pages/home';
 Amplify.configure(awsconfig);
 function App() {
+  const [user, setUser] = useState();
+  const settingUser = (user) => {
+    setUser(user);
+  }
+  useEffect(() => {
+    Auth.currentAuthenticatedUser().then(user=>{
+      setUser(user);
+    }).catch(err => {
+      console.log('not authed')
+    })
+  })
   return (
-    <Router>
-      <Routes>
-          <Route path="/auth" element={<AuthPage />}/>
-          <Route path="/home" element={<HomePage />} />
-      </Routes>
-    </Router>
+      <>
+        <AuthPage settingUser={settingUser} />
+        <HomePage user={user} />
+      </>
   );
 }
 

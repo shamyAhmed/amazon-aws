@@ -2,25 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {Navigate} from 'react-router-dom'
 import { Auth } from 'aws-amplify';
 
-const HomePage = () => {
-    const [currentUser, setCurrentUser] = useState();
-    useEffect(() => {
-        Auth.currentAuthenticatedUser().then(user => { 
-            if(user){
-                setCurrentUser(user);
-            }
-        }).catch(() => {
-            setCurrentUser(false)
-            console.log('hello');
-        })
+const HomePage = ({user}) => {
 
-    }, [])
-
-    if(currentUser === undefined){
+    if(user === undefined){
         return <></>
     }
-    if(currentUser === false){
-        return <Navigate to={'/auth'}/>
+    if(user === false){
+        return <></>
     }
     return(
         <div className='homeWelcome'>welcomeHome</div>

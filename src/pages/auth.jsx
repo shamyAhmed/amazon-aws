@@ -3,7 +3,7 @@ import Register from "../components/register/Register";
 import LOGIN from "../components/login/login";
 import Confirm from "../components/confirm/confirm";
 
-const AuthPage = () => {
+const AuthPage = ({settingUser}) => {
     return(
         <div className="App">
             Rister : 
@@ -12,7 +12,7 @@ const AuthPage = () => {
             Login : 
             <br />
 
-            <LOGIN />
+            <LOGIN settingUser={settingUser} />
 
             Confirm :
             <Confirm />
