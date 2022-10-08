@@ -23,7 +23,7 @@ const HomePage = () => {
         return <Navigate to={'/auth'}/>
     }
     return(
-        <div>welcomeHome</div>
+        <div className='homeWelcome'>welcomeHome</div>
     )
 }
 export default HomePage;
